@@ -21,6 +21,16 @@ public class OrderServicesImpl implements OrderServices
     @Override
     public Order save(Order order)
     {
+        Order newOrder = new Order();
+
+        if (order.getOrdnum() != 0)
+        {
+            orderrepos.findById(order.getOrdnum())
+                .orElseThrow(() -> new EntityNotFoundException("Order " + order.getOrdnum() + " Not Found"));
+
+            newOrder.setOrdnum(order.getOrdnum());
+
+        }
         return orderrepos.save(order);
     }
 

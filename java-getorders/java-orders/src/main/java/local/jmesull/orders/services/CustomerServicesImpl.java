@@ -1,7 +1,9 @@
 package local.jmesull.orders.services;
 
 import local.jmesull.orders.models.Customer;
+import local.jmesull.orders.models.Order;
 import local.jmesull.orders.repositories.CustomerRepository;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,37 @@ public class CustomerServicesImpl implements CustomerServices
     @Override
     public Customer save(Customer customer)
     {
-        return customerrepos.save(customer);
+        Customer newCustomer = new Customer();
+
+        if (customer.getCustcode() != 0)
+        {
+            customerrepos.findById(customer.getCustcode())
+                .orElseThrow(() -> new EntityNotFoundException("Customer " + customer.getCustcode() + " Not Found"));
+
+            newCustomer.setCustcode(customer.getCustcode());
+        }
+
+        newCustomer.setCustname(customer.getCustname());
+        newCustomer.setCustcity(customer.getCustcity());
+        newCustomer.setCustcountry(customer.getCustcountry());
+        newCustomer.setWorkingarea(customer.getWorkingarea());
+        newCustomer.setGrade(customer.getGrade());
+        newCustomer.setOpeningamt(customer.getOpeningamt());
+        newCustomer.setOutstandingamt(customer.getOutstandingamt());
+        newCustomer.setPaymentamt(customer.getPaymentamt());
+        newCustomer.setAgent(customer.getAgent());
+        newCustomer.setPhone(customer.getPhone());
+        newCustomer.setReceiveamt(customer.getReceiveamt());
+
+        //OneToMany
+        newCustomer.getOrders().clear();
+        for (Order o: customer.getOrders())
+        {
+            Order newOrder = new Order(o.getOrdamount(), o.getAdvanceamount(), newCustomer, o.getOrderdescription());
+            newCustomer.getOrders().add(newOrder);
+        }
+
+        return customerrepos.save(newCustomer);
     }
 
     @Transactional

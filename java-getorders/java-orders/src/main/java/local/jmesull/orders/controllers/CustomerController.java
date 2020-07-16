@@ -75,7 +75,22 @@ public class CustomerController
 
     }
 
-    //PUT /customers/customer/{custcode} 
+    //PUT /customers/customer/{custcode}
+    //Request body - JSON Object complete Customer - > agent -> orders
+    @PutMapping(value = "customer/{custcode}", consumes ="application/json", produces = "application/json")
+    public ResponseEntity<?> updateCustomer(@Validated @RequestBody Customer updateCustomer,
+                                            @PathVariable long custcode)
+    {
+        updateCustomer.setCustcode(custcode);
+        customerService.save(updateCustomer);
+
+        return new ResponseEntity<>(updateCustomer, HttpStatus.OK);
+
+    }
+
+    //PATCH /customers/customer/{custcode}
+    @PatchMapping(value = "/customer/{custcode}")
+
 
 
 
