@@ -42,4 +42,13 @@ public class OrderServicesImpl implements OrderServices
         orderrepos.findAllByAdvanceamountGreaterThan(0.0).iterator().forEachRemaining(orders::add);
         return orders;
     }
+
+    @Transactional
+    @Override
+    public void deleteOrder(long id)
+    {
+        orderrepos.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Order " + id + " Not Found!"));
+        orderrepos.deleteById(id);
+    }
 }

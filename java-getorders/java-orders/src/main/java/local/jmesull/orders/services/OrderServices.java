@@ -11,4 +11,6 @@ public interface OrderServices
     Order findById(long id);
 
     List<Order> findByAdvanceAmount();
+
+    void deleteOrder(long id);
 }

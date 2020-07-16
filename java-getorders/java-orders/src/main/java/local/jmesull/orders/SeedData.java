@@ -66,6 +66,7 @@ public class SeedData<custNamesSet> implements CommandLineRunner
     @Override
     public void run(String[] args) throws Exception
     {
+
         Payment pay1 = new Payment("Cash");
         Payment pay2 = new Payment("Gift Card");
         Payment pay3 = new Payment("Credit Card");

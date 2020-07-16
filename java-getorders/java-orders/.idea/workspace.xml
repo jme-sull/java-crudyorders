@@ -17,7 +17,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="1eeDHajS7uXDFvjRnG73HKaATUu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -38,7 +38,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -71,6 +71,7 @@
       <workItem from="1594673081870" duration="13896000" />
       <workItem from="1594838434959" duration="1051000" />
       <workItem from="1594841177482" duration="8516000" />
+      <workItem from="1594926640002" duration="4527000" />
     </task>
     <servers />
   </component>
@@ -81,11 +82,11 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2146" y="334" key="#com.intellij.ide.util.MemberChooser" timestamp="1594853590972">
+    <state x="2146" y="334" key="#com.intellij.ide.util.MemberChooser" timestamp="1594931878359">
       <screen x="1440" y="-68" width="1920" height="1057" />
     </state>
     <state x="2146" y="320" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900/1440.-91.1920.1080@1440.-91.1920.1080" timestamp="1594731657564" />
-    <state x="2146" y="334" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.-68.1920.1057@1440.-68.1920.1057" timestamp="1594853590972" />
+    <state x="2146" y="334" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877/1440.-68.1920.1057@1440.-68.1920.1057" timestamp="1594931878359" />
     <state x="2285" y="438" width="462" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1594732796760">
       <screen x="1440" y="-68" width="1920" height="1057" />
     </state>
@@ -122,6 +123,10 @@
       <screen x="1440" y="-68" width="1920" height="1057" />
     </state>
     <state width="1878" height="290" key="GridCell.Tab.1.right/0.23.1440.877/1440.-68.1920.1057@1440.-68.1920.1057" timestamp="1594855020231" />
+    <state x="1969" y="99" key="SettingsEditor" timestamp="1594926698619">
+      <screen x="1440" y="-68" width="1920" height="1057" />
+    </state>
+    <state x="1969" y="99" key="SettingsEditor/0.23.1440.877/1440.-68.1920.1057@1440.-68.1920.1057" timestamp="1594926698619" />
     <state x="2450" y="190" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1594688393470">
       <screen x="1440" y="-68" width="1920" height="1057" />
     </state>
@@ -140,7 +145,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/local/jmesull/orders/controllers/OrderController.java</url>
-          <line>32</line>
+          <line>29</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

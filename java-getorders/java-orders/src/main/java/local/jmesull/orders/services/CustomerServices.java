@@ -13,4 +13,6 @@ public interface CustomerServices
     Customer findById(long id);
 
     List<Customer> findBySubString(String string);
+
+    void deleteById(long id);
 }

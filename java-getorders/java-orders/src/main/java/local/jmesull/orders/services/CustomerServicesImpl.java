@@ -52,4 +52,10 @@ public class CustomerServicesImpl implements CustomerServices
         customerrepos.findAllByCustnameContains(string).iterator().forEachRemaining(customers::add);
         return customers;
     }
+
+    @Override
+    public void deleteById(long id)
+    {
+
+    }
 }
