@@ -56,7 +56,7 @@ public class CustomerServicesImpl implements CustomerServices
         return customerrepos.save(newCustomer);
     }
 
-    @Transactional
+
     @Override
     public List<Customer> findAll()
     {
@@ -65,7 +65,7 @@ public class CustomerServicesImpl implements CustomerServices
         return list;
     }
 
-    @Transactional
+
     @Override
     public Customer findById(long id)
     {
@@ -76,7 +76,7 @@ public class CustomerServicesImpl implements CustomerServices
         return c;
     }
 
-    @Transactional
+
     @Override
     public List<Customer> findBySubString(String string)
     {
@@ -85,9 +85,87 @@ public class CustomerServicesImpl implements CustomerServices
         return customers;
     }
 
+    @Transactional
     @Override
     public void deleteById(long id)
     {
+        customerrepos.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Customer " + id + " Not Found!"));
+        customerrepos.deleteById(id);
+    }
+
+    @Transactional
+    @Override
+    public Customer update(
+        Customer customer,
+        long id)
+    {
+        Customer currentCustomer = customerrepos.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Customer " + customer.getCustcode() + " Not Found"));
+
+        if (customer.getCustname() != null)
+        {
+            currentCustomer.setCustname(customer.getCustname());
+        }
+        if (customer.getCustcity() != null)
+        {
+            currentCustomer.setCustcity(customer.getCustcity());
+        }
+        if (customer.getCustcountry() != null)
+        {
+            currentCustomer.setCustcountry(customer.getCustcountry());
+        }
+        if (customer.getWorkingarea() != null)
+        {
+            currentCustomer.setWorkingarea(customer.getWorkingarea());
+        }
+        if (customer.getGrade() != null)
+        {
+            currentCustomer.setGrade(customer.getGrade());
+        }
+        if (customer.hasvalueforopeningamt)
+        {
+            currentCustomer.setOpeningamt(customer.getOpeningamt());
+        }
+        if (customer.hasvalueforoutstandingamt)
+        {
+            currentCustomer.setOutstandingamt(customer.getOutstandingamt());
+        }
+        if (customer.hasvalueforpaymentamt)
+        {
+            currentCustomer.setPaymentamt(customer.getPaymentamt());
+        }
+        if (customer.getAgent() != null)
+        {
+            currentCustomer.setAgent(customer.getAgent());
+        }
+        if (customer.getPhone() != null)
+        {
+            currentCustomer.setPhone(customer.getPhone());
+        }
+
+        if (customer.hasvalueforreceiveamt)
+        {
+            currentCustomer.setReceiveamt(customer.getReceiveamt());
+        }
+
+        //OneToMany
+        if(customer.getOrders().size() >0)
+        {
+            currentCustomer.getOrders()
+                .clear();
+            for (Order o : customer.getOrders())
+            {
+                Order newOrder = new Order(o.getOrdamount(),
+                    o.getAdvanceamount(),
+                    currentCustomer,
+                    o.getOrderdescription());
+                currentCustomer.getOrders()
+                    .add(newOrder);
+            }
+        }
+
+        return customerrepos.save(currentCustomer);
 
     }
 }

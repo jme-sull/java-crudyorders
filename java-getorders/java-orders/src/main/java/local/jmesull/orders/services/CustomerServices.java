@@ -15,4 +15,6 @@ public interface CustomerServices
     List<Customer> findBySubString(String string);
 
     void deleteById(long id);
+
+    Customer update(Customer customer, long id);
 }

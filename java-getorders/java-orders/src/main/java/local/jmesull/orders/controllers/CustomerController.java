@@ -58,7 +58,7 @@ public class CustomerController
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    /// POST customers/customer
+    ///POST http://localhost:2019/customers/customer
     // Request Body - JSON Object New Restaurant
     @PostMapping(value = "/customer", consumes = {"application/json"})
     public ResponseEntity<?> addNewCustomer(@Validated @RequestBody Customer newCustomer)
@@ -88,8 +88,14 @@ public class CustomerController
 
     }
 
-    //PATCH /customers/customer/{custcode}
-    @PatchMapping(value = "/customer/{custcode}")
+    //PATCH http://localhost:2019/customers/customer/{custcode}
+    @PatchMapping(value = "/customer/{custcode}", consumes = "application/json")
+    public ResponseEntity<?> updatePartCustomer(@RequestBody Customer updateCustomer,
+                                                @PathVariable long custcode)
+    {
+        customerService.update(updateCustomer, custcode);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 
 

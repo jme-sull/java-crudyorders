@@ -25,7 +25,7 @@ import java.util.Set;
 
 @Transactional
 @Component
-public class SeedData<custNamesSet> implements CommandLineRunner
+public class SeedData implements CommandLineRunner
 {
     /**
      * Connects the customer table to this SeedData method

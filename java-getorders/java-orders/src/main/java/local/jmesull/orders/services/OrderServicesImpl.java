@@ -1,7 +1,9 @@
 package local.jmesull.orders.services;
 
 import local.jmesull.orders.models.Order;
+import local.jmesull.orders.models.Payment;
 import local.jmesull.orders.repositories.OrderRepository;
+import local.jmesull.orders.repositories.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ public class OrderServicesImpl implements OrderServices
     @Autowired
     OrderRepository orderrepos;
 
+    @Autowired
+    PaymentRepository paymentrepos;
+
     @Transactional
     @Override
     public Order save(Order order)
@@ -31,7 +36,26 @@ public class OrderServicesImpl implements OrderServices
             newOrder.setOrdnum(order.getOrdnum());
 
         }
-        return orderrepos.save(order);
+
+
+        newOrder.setOrdamount(order.getOrdamount());
+        newOrder.setAdvanceamount(order.getAdvanceamount());
+        newOrder.setOrderdescription(order.getOrderdescription());
+
+        //Many To Many
+        newOrder.getPayments().clear();
+        for (Payment p : order.getPayments())
+        {
+            Payment newPay = paymentrepos.findById(p.getPaymentid())
+                .orElseThrow(() -> new EntityNotFoundException("Payment " + p.getPaymentid() + " Not Found!"));
+
+            newOrder.getPayments().add(newPay);
+        }
+
+
+
+
+        return orderrepos.save(newOrder);
     }
 
 
